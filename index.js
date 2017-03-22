@@ -9,6 +9,12 @@ var path = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=998407.o';
 var title = '日経平均株価';
 var price = '';
 
+var setup = function() {
+  if (process.argv.length >= 3) {
+    path = process.argv[2];
+  }
+};
+
 var main = function() {
     nightmare
         .goto(path)
@@ -45,6 +51,7 @@ var errorNotify = function() {
     });
 };
 
+setup();
 main();
 var job = new CronJob({
     cronTime: '*/5 * * * *',
