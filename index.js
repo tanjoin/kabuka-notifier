@@ -8,10 +8,15 @@ var CronJob = require('cron').CronJob;
 var path = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=998407.o';
 var title = '日経平均株価';
 var price = '';
+var isManualTitle = false;
 
 var setup = function() {
   if (process.argv.length >= 3) {
     path = process.argv[2];
+  }
+  if (process.argv.length >= 4) {
+    title = process.argv[3];
+	isManualTitle = true;
   }
 };
 
